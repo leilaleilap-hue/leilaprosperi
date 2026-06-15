@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Leila Prosperi</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --cyan-deep:#0a2a4a;
+  --cyan-mid:#1a4a7a;
+  --cyan-bright:#1e6091;
+  --cyan-light:#4a90b8;
+  --cyan-pale:#a8cce0;
+  --cyan-frost:#d4eaf5;
+  --cyan-mist:#e8f4fb;
+  --cyan-paper:#eef6fb;
+  --white:#f5fbff;
+  --ink:#071828;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;font-weight:300;background:var(--cyan-paper);color:var(--cyan-deep);overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.3rem 3rem;background:rgba(238,246,251,0.92);backdrop-filter:blur(14px);border-bottom:0.5px solid var(--cyan-pale);}
+.nav-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.25rem;color:var(--cyan-bright);letter-spacing:0.04em;}
+.nav-links{display:flex;gap:1.8rem;list-style:none;}
+.nav-links a{font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--cyan-light);text-decoration:none;transition:color 0.3s;}
+.nav-links a:hover{color:var(--cyan-deep);}
+
+#home{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;background:var(--cyan-deep);overflow:hidden;}
+.hero-bg-img{position:absolute;inset:0;background-image:url("puppets.png");background-size:cover;background-position:center;opacity:1;z-index:0;-webkit-mask-image:radial-gradient(circle 320px at 50% 50%, transparent 100%, black 100%);mask-image:radial-gradient(circle 320px at 50% 50%, transparent 100%, black 100%);}
+.cyano-texture{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 20%,rgba(30,96,145,0.55) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 10% 80%,rgba(26,74,122,0.6) 0%,transparent 55%);}
+.grain{position:absolute;inset:0;opacity:0.06;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px;}
+.sun-circle{position:absolute;width:440px;height:440px;border-radius:50%;border:0.5px solid rgba(168,204,224,0.15);top:50%;left:50%;transform:translate(-50%,-50%);animation:pulse 6s ease-in-out infinite;}
+.sun-circle2{position:absolute;width:640px;height:640px;border-radius:50%;border:0.5px solid rgba(168,204,224,0.07);top:50%;left:50%;transform:translate(-50%,-50%);animation:pulse 6s ease-in-out infinite 2s;}
+@keyframes pulse{0%,100%{opacity:0.4;transform:translate(-50%,-50%) scale(1);}50%{opacity:0.9;transform:translate(-50%,-50%) scale(1.02);}}
+.hero-content{position:relative;text-align:center;padding:2rem;animation:fadeUp 1.4s ease forwards;opacity:0;transform:translateY(28px);}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--cyan-pale);margin-bottom:1.4rem;opacity:0.8;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(3.8rem,9vw,7.5rem);line-height:1;color:var(--white);margin-bottom:0.4rem;}
+.hero-title em{font-style:italic;color:var(--cyan-pale);}
+.hero-surname{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.4rem,3.5vw,2.8rem);letter-spacing:0.35em;text-transform:uppercase;color:rgba(245,251,255,0.45);margin-bottom:2.2rem;}
+.hero-sub{font-size:0.72rem;letter-spacing:0.14em;color:var(--cyan-pale);max-width:380px;margin:0 auto 2.8rem;line-height:2.1;opacity:0.85;}
+.btn-outline{display:inline-block;padding:0.8rem 2.4rem;border:0.5px solid var(--cyan-pale);font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--cyan-pale);text-decoration:none;transition:background 0.35s,color 0.35s;cursor:pointer;background:transparent;}
+.btn-outline:hover{background:var(--cyan-pale);color:var(--cyan-deep);}
+.scroll-hint{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(168,204,224,0.45);font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;animation:bob 3s ease-in-out infinite;}
+.scroll-line{width:0.5px;height:44px;background:rgba(168,204,224,0.25);}
+@keyframes bob{0%,100%{opacity:0.4;transform:translateX(-50%) translateY(0);}50%{opacity:1;transform:translateX(-50%) translateY(7px);}}
+
+section{padding:7rem 3rem;}
+.section-label{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--cyan-light);margin-bottom:0.7rem;}
+.section-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,4vw,3.4rem);line-height:1.1;color:var(--cyan-deep);margin-bottom:1.2rem;}
+.section-title em{font-style:italic;color:var(--cyan-bright);}
+
+#practice{background:var(--white);padding:5rem 3rem;}
+.pillars-head{text-align:center;max-width:600px;margin:0 auto 4rem;}
+.pillars-sub{font-size:0.82rem;color:var(--cyan-light);line-height:2;margin-top:0.6rem;}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:0;max-width:1000px;margin:0 auto;}
+.pillar{padding:2.8rem 2.2rem;border-left:0.5px solid var(--cyan-frost);transition:background 0.4s;}
+.pillar:first-child{border-left:none;}
+.pillar:hover{background:var(--cyan-mist);}
+.pillar[onclick]:hover .pillar-tag{border-bottom-color:var(--cyan-bright);}
+.pillar-number{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:var(--cyan-frost);line-height:1;margin-bottom:1rem;transition:color 0.4s;}
+.pillar:hover .pillar-number{color:var(--cyan-pale);}
+.pillar-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.5rem;color:var(--cyan-deep);margin-bottom:0.8rem;}
+.pillar-text{font-size:0.8rem;color:var(--cyan-light);line-height:1.95;}
+.pillar-tag{display:inline-block;margin-top:1.2rem;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan-bright);border-bottom:0.5px solid var(--cyan-pale);padding-bottom:2px;}
+
+#gallery{background:var(--cyan-deep);padding:7rem 3rem;}
+#gallery .section-label{color:var(--cyan-pale);}
+#gallery .section-title{color:var(--white);}
+#gallery .section-title em{color:var(--cyan-pale);}
+.gallery-tabs{display:flex;gap:0;max-width:1100px;margin:0 auto 3rem;border-bottom:0.5px solid rgba(168,204,224,0.2);}
+.tab-btn{background:none;border:none;font-family:'Jost',sans-serif;font-weight:300;font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(168,204,224,0.45);cursor:pointer;padding:0.8rem 1.6rem 0.8rem 0;transition:color 0.3s;position:relative;}
+.tab-btn::after{content:'';position:absolute;bottom:-0.5px;left:0;right:1.6rem;height:1px;background:var(--cyan-pale);transform:scaleX(0);transition:transform 0.3s;}
+.tab-btn.active{color:var(--cyan-pale);}
+.tab-btn.active::after{transform:scaleX(1);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+.gallery-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:0.8rem;max-width:1100px;margin:0 auto;}
+.artwork{overflow:hidden;position:relative;cursor:pointer;}
+.artwork:nth-child(1){grid-column:1/6;grid-row:1/3;}
+.artwork:nth-child(2){grid-column:6/9;grid-row:1;}
+.artwork:nth-child(3){grid-column:9/13;grid-row:1;}
+.artwork:nth-child(4){grid-column:6/9;grid-row:2;}
+.artwork:nth-child(5){grid-column:9/13;grid-row:2;}
+.artwork:nth-child(6){grid-column:1/5;grid-row:3;}
+.artwork:nth-child(7){grid-column:5/9;grid-row:3;}
+.artwork:nth-child(8){grid-column:9/13;grid-row:3;}
+.puppet-grid .artwork:nth-child(1){grid-column:1/5;grid-row:1;}
+.puppet-grid .artwork:nth-child(2){grid-column:5/9;grid-row:1;}
+.puppet-grid .artwork:nth-child(3){grid-column:9/13;grid-row:1;}
+.puppet-grid .artwork:nth-child(4){grid-column:1/5;grid-row:2;}
+.puppet-grid .artwork:nth-child(5){grid-column:5/9;grid-row:2;}
+.puppet-grid .artwork:nth-child(6){grid-column:9/13;grid-row:2;}
+.artwork-inner{width:100%;padding-top:100%;position:relative;overflow:hidden;}
+.artwork:nth-child(1) .artwork-inner{padding-top:78%;}
+.artwork:nth-child(6) .artwork-inner,.artwork:nth-child(7) .artwork-inner,.artwork:nth-child(8) .artwork-inner{padding-top:68%;}
+.puppet-grid .artwork:nth-child(n) .artwork-inner{padding-top:75%;}
+.art-bg{position:absolute;inset:0;transition:transform 0.7s ease;}
+.artwork:hover .art-bg{transform:scale(1.05);}
+.art-bg::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:150px;opacity:0.07;}
+.art-overlay{position:absolute;inset:0;background:rgba(7,24,40,0);transition:background 0.4s ease;display:flex;align-items:flex-end;padding:1.1rem;}
+.artwork:hover .art-overlay{background:rgba(7,24,40,0.55);}
+.art-label{color:var(--white);opacity:0;transform:translateY(10px);transition:opacity 0.35s,transform 0.35s;}
+.artwork:hover .art-label{opacity:1;transform:translateY(0);}
+.art-label p{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan-pale);margin-top:3px;}
+.art-label span{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;}
+.ca1{background:linear-gradient(145deg,#0d3356 0%,#1a5480 40%,#0f2d4a 100%);}
+.ca2{background:linear-gradient(160deg,#1a4a7a 0%,#2a6a9a 60%,#153d6a 100%);}
+.ca3{background:linear-gradient(130deg,#0a2a4a 0%,#1e6091 80%,#0d3560 100%);}
+.ca4{background:linear-gradient(150deg,#163d60 0%,#2a7aaa 100%);}
+.ca5{background:linear-gradient(140deg,#0f3050 0%,#1a5a88 100%);}
+.ca6{background:linear-gradient(135deg,#1a4a7a 0%,#4a90b8 70%,#1a4a7a 100%);}
+.ca7{background:linear-gradient(160deg,#0a2a4a 0%,#1e6091 50%,#2a7aaa 100%);}
+.ca8{background:linear-gradient(120deg,#163d60 0%,#4a90b8 60%,#0f2d4a 100%);}
+.cp1{background:linear-gradient(150deg,#0d3356 0%,#1a5888 60%,#0a2440 100%);}
+.cp2{background:linear-gradient(130deg,#0f2d4a 0%,#1e5a88 50%,#2a7aaa 100%);}
+.cp3{background:linear-gradient(160deg,#163d60 0%,#1a4a7a 80%,#0f2d4a 100%);}
+.cp4{background:linear-gradient(140deg,#0a2030 0%,#1a4060 40%,#0d3060 100%);}
+.cp5{background:linear-gradient(150deg,#1a4a7a 0%,#2a6a9a 100%);}
+.cp6{background:linear-gradient(160deg,#0d3356 0%,#1e6091 100%);}
+.cp7{background:linear-gradient(135deg,#0a2a4a 0%,#1a5480 50%,#4a90b8 100%);}
+
+/* HOW TO ADD YOUR IMAGES — read this comment:
+   Replace the colored div.art-bg elements with your actual images like this:
+   <img src="your-image.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt="Title of work"/>
+   Keep your image files in the same folder as this HTML file.
+*/
+
+#statement{background:var(--cyan-deep);padding:7rem 3rem;}
+.statement-layout{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:6rem;align-items:start;}
+.statement-aside{position:sticky;top:8rem;}
+.statement-aside .section-label{color:var(--cyan-pale);}
+.statement-aside .section-title{color:var(--white);}
+.statement-aside .section-title em{color:var(--cyan-pale);}
+.statement-aside p{font-size:0.75rem;color:rgba(168,204,224,0.55);line-height:1.9;margin-top:1.2rem;}
+.statement-rule{width:0.5px;height:60px;background:rgba(168,204,224,0.2);margin-top:2rem;}
+.statement-body p{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.15rem;color:rgba(245,251,255,0.82);line-height:1.85;margin-bottom:1.8rem;}
+.statement-body p:first-child{font-size:1.15rem;color:var(--white);}
+.statement-body p:first-child::first-letter{font-size:3.8rem;float:left;line-height:0.82;margin-right:0.08em;margin-top:0.05em;padding-top:0.02em;color:var(--cyan-pale);}
+
+#about{background:var(--white);}
+.about-layout{max-width:1060px;margin:0 auto;}
+.about-top{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-bottom:4rem;}
+.about-portrait{position:relative;}
+.portrait-frame{width:100%;padding-top:125%;position:relative;overflow:hidden;}
+.portrait-bg{position:absolute;inset:0;background:linear-gradient(160deg,#0d3356 0%,#1a5480 35%,#2a7aaa 70%,#0f2d4a 100%);}
+.portrait-bg::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:150px;opacity:0.1;}
+.portrait-deco{position:absolute;top:-12px;left:-12px;width:60%;height:40%;border-top:0.5px solid var(--cyan-pale);border-left:0.5px solid var(--cyan-pale);}
+.portrait-caption{position:absolute;bottom:-1.5rem;right:-1.5rem;background:var(--cyan-deep);color:var(--cyan-pale);font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;padding:0.9rem 1.2rem;line-height:1.8;}
+.about-text{padding-top:0.5rem;}
+.about-bio{font-size:0.87rem;color:var(--cyan-mid);line-height:2.1;margin-bottom:1.2rem;}
+.about-detail{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--cyan-pale);padding:0.9rem 0;border-top:0.5px solid var(--cyan-frost);display:flex;justify-content:space-between;gap:1rem;}
+.about-detail span:last-child{color:var(--cyan-bright);text-align:right;}
+.skills-strip{border-top:0.5px solid var(--cyan-frost);padding-top:3rem;}
+.skills-strip .section-label{margin-bottom:2rem;}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--cyan-frost);}
+.skill-cell{background:var(--white);padding:1.4rem 1.2rem;transition:background 0.3s;}
+.skill-cell:hover{background:var(--cyan-mist);}
+.skill-icon{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan-pale);margin-bottom:0.6rem;}
+.skill-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--cyan-deep);}
+.btn-solid{display:inline-block;margin-top:2rem;padding:0.85rem 2.4rem;background:var(--cyan-deep);color:var(--white);font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;text-decoration:none;transition:background 0.3s;cursor:pointer;border:none;}
+.btn-solid:hover{background:var(--cyan-bright);}
+
+#contact{background:var(--cyan-mist);}
+.contact-layout{max-width:640px;margin:0 auto;text-align:center;}
+.contact-intro{font-size:0.85rem;color:var(--cyan-mid);line-height:2;margin-bottom:3rem;}
+.contact-form{display:flex;flex-direction:column;gap:1.1rem;text-align:left;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.field label{display:block;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--cyan-light);margin-bottom:0.5rem;}
+.field input,.field textarea,.field select{width:100%;background:rgba(245,251,255,0.8);border:0.5px solid var(--cyan-pale);padding:0.9rem 1rem;font-family:'Jost',sans-serif;font-weight:300;font-size:0.85rem;color:var(--cyan-deep);outline:none;transition:border-color 0.3s,background 0.3s;appearance:none;border-radius:0;}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--cyan-bright);background:var(--white);}
+.field textarea{resize:vertical;min-height:120px;}
+.form-submit{text-align:center;padding-top:0.4rem;}
+.confirm-msg{display:none;text-align:center;padding:2.5rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--cyan-bright);line-height:1.6;}
+.contact-socials{margin-top:3.5rem;display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;}
+.social-link{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--cyan-light);text-decoration:none;transition:color 0.3s;border-bottom:0.5px solid transparent;padding-bottom:2px;}
+.social-link:hover{color:var(--cyan-deep);border-bottom-color:var(--cyan-pale);}
+
+footer{background:var(--ink);color:rgba(168,204,224,0.45);text-align:center;padding:2.5rem;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;}
+footer em{font-style:italic;font-family:'Cormorant Garamond',serif;color:var(--cyan-pale);font-size:0.9rem;}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+@media(max-width:768px){
+  /* NAV */
+  nav{padding:1rem 1.2rem;flex-direction:column;align-items:flex-start;gap:0.6rem;}
+  .nav-links{gap:1rem;flex-wrap:wrap;}
+  .nav-links a{font-size:0.58rem;}
+
+  /* HERO */
+  section{padding:5rem 1.5rem;}
+  .hero-bg-img{display:block;}
+  .sun-circle{width:280px;height:280px;}
+  .sun-circle2{width:380px;height:380px;}
+
+  /* PRACTICE */
+  .pillars{grid-template-columns:1fr;}
+  .pillar{border-left:none;border-top:0.5px solid var(--cyan-frost);}
+  .pillar:first-child{border-top:none;}
+
+  /* GALLERY - clean 2 col grid */
+  .gallery-grid{grid-template-columns:1fr 1fr;gap:0.6rem;}
+  .artwork:nth-child(n){grid-column:auto !important;grid-row:auto !important;}
+  .artwork-inner{padding-top:100% !important;}
+  .cyano-grid{grid-template-columns:1fr 1fr;}
+
+  /* GALLERY TABS */
+  .gallery-tabs{flex-wrap:wrap;gap:0.3rem;}
+  .tab-btn{font-size:0.55rem;padding:0.6rem 0.8rem 0.6rem 0;}
+
+  /* STATEMENT */
+  .statement-layout{grid-template-columns:1fr;gap:3rem;}
+  .statement-aside{position:static;}
+
+  /* ABOUT */
+  .about-top{grid-template-columns:1fr;}
+
+  /* CONTACT */
+  .form-row{grid-template-columns:1fr;}
+}
+
+
+/* CYANO / PHOTO GRID */
+.cyano-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.8rem;max-width:1100px;margin:0 auto;}
+.cyano-grid .artwork{grid-column:auto;grid-row:auto;}
+.cyano-grid .artwork .artwork-inner{padding-top:75%;}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;z-index:1000;background:rgba(7,24,40,0.97);align-items:center;justify-content:center;flex-direction:column;}
+.lightbox.open{display:flex;}
+.lightbox-img-wrap{position:relative;max-width:90vw;max-height:80vh;display:flex;align-items:center;justify-content:center;}
+.lightbox-img-wrap img{max-width:90vw;max-height:80vh;object-fit:contain;border:0.5px solid rgba(168,204,224,0.15);}
+.lightbox-close{position:fixed;top:2rem;right:2.5rem;background:none;border:none;color:var(--cyan-pale);font-size:1.8rem;cursor:pointer;z-index:1001;opacity:0.7;transition:opacity 0.2s;}
+.lightbox-close:hover{opacity:1;}
+.lightbox-prev,.lightbox-next{position:fixed;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--cyan-pale);font-size:2rem;cursor:pointer;padding:1rem;opacity:0.6;transition:opacity 0.2s;z-index:1001;}
+.lightbox-prev{left:1.5rem;}
+.lightbox-next{right:1.5rem;}
+.lightbox-prev:hover,.lightbox-next:hover{opacity:1;}
+.lightbox-caption{margin-top:1.2rem;text-align:center;}
+.lightbox-caption span{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--white);}
+.lightbox-caption p{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan-pale);margin-top:0.3rem;}
+.lightbox-counter{font-size:0.6rem;letter-spacing:0.2em;color:rgba(168,204,224,0.4);margin-top:0.5rem;}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Leila Prosperi</span>
+  <ul class="nav-links">
+    <li><a href="#practice">Practice</a></li>
+    <li><a href="#gallery">Works</a></li>
+    <li><a href="#statement">Statement</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="home">
+  <div class="hero-bg-img"></div>
+  <div class="cyano-texture"></div>
+  <div class="grain"></div>
+  <div class="sun-circle"></div>
+  <div class="sun-circle2"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Puppetry · Photography · Art Installations</p>
+    <h1 class="hero-title"><em>Leila</em></h1>
+    <p class="hero-surname">Prosperi</p>
+    <p class="hero-sub">Light made visible. Paper made form.<br>The photograph that moves through space.</p>
+    <a href="#practice" class="btn-outline">Explore My Practice</a>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>scroll</div>
+</section>
+
+<section id="practice">
+  <div class="pillars-head reveal">
+    <p class="section-label">Art practice</p>
+    <h2 class="section-title">Three ways of <em>seeing</em></h2>
+    <p class="pillars-sub">A practice that moves between the chemical, the sculptural, and the theatrical — always beginning with light on paper.</p>
+  </div>
+  <div class="pillars reveal" style="transition-delay:0.15s">
+    <div class="pillar" onclick="goToTab('cyano')" style="cursor:pointer;">
+      <div class="pillar-number">I</div>
+      <div class="pillar-title">Cyanotype</div>
+      <p class="pillar-text">Working with the nineteenth-century iron-salt process, Leila coats paper and unconventional surfaces with photosensitive chemistry and exposes them to UV light — fixing the world in deep Prussian blue. Each print is unique, shaped by light, time, and the hand of the maker.</p>
+      <span class="pillar-tag">Paper · Sunlight · Chemistry</span>
+    </div>
+    <div class="pillar" onclick="goToTab('photography')" style="cursor:pointer;">
+      <div class="pillar-number">II</div>
+      <div class="pillar-title">Photography</div>
+      <p class="pillar-text">Street photography, ephemeral image-making, darkroom printing, film and digital — Leila works across the full breadth of photographic practice, drawn to the relationship between light and the image that emerges.</p>
+      <span class="pillar-tag">Darkroom · Analogue · Digital</span>
+    </div>
+    <div class="pillar" onclick="goToTab('puppets')" style="cursor:pointer;">
+      <div class="pillar-number">III</div>
+      <div class="pillar-title">Puppet Sculpture &amp; Installation</div>
+      <p class="pillar-text">Developed cyanotype paper — printed from personal photo albums and stock images — is cut and assembled into articulated puppets. These figures construct theatrical installations that invite not only optical encounter but spatial and tactile ones. The photograph leaves the wall and floats in space.</p>
+      <span class="pillar-tag">Paper · Sculpture · Theatre</span>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="gallery-intro reveal">
+    <p class="section-label">Selected works</p>
+    <h2 class="section-title">Photographs &amp; <em>the moving form</em></h2>
+  </div>
+  <div class="gallery-tabs reveal" style="transition-delay:0.1s">
+    <button class="tab-btn active" onclick="switchTab('cyano')">Cyanotype</button>
+    <button class="tab-btn" onclick="switchTab('photography')">Photography</button>
+    <button class="tab-btn" onclick="switchTab('puppets')">Puppet Sculpture &amp; Installation</button>
+  </div>
+  <div class="tab-panel active" id="tab-cyano">
+    <div class="gallery-grid cyano-grid">
+      <div class="artwork" onclick="openSingle('c1.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="c1.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('c2.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="c2.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('c3.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="c3.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('c4.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="c4.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('c5.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="c5.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('c6.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="c6.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('c7.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="c7.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('c8.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="c8.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('c9.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="c9.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('c10.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="c10.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('c11.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="c11.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('c12.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="c12.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('c13.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="c13.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('c14.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="c14.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('c15.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="c15.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+    </div>
+</div></div></div>
+      </div>
+  </div>
+<div class="tab-panel" id="tab-photography">
+    <div class="gallery-grid cyano-grid">
+      <div class="artwork" onclick="openSingle('p1.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="p1.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('p2.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="p2.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('p3.JPEG')" style="cursor:pointer;"><div class="artwork-inner"><img src="p3.JPEG" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('p4.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="p4.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('p5.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="p5.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('p6.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="p6.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('p7.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="p7.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('p8.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="p8.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('p9.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="p9.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('p10.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="p10.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('p11.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="p11.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('p12.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="p12.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('p13.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="p13.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+      <div class="artwork" onclick="openSingle('p14.jpg')" style="cursor:pointer;"><div class="artwork-inner"><img src="p14.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;" alt=""/></div></div>
+    </div>
+</div></div></div>
+    </div>
+</div>
+<div class="tab-panel" id="tab-puppets">
+    <div style="text-align:center;margin-bottom:2.5rem;color:rgba(168,204,224,0.7);font-size:0.8rem;line-height:2;letter-spacing:0.05em;">Figures constructed from cyanotype-printed paper — personal photographs and stock images cut and assembled into theatrical installations.</div>
+    <div class="gallery-grid puppet-grid">
+      <div class="artwork" onclick="openLightbox('cherries', 0)" style="cursor:pointer;"><div class="artwork-inner"><img src="image1.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;object-position:center top;" alt="You want to give up the taste of the cherries?"/><div class="art-overlay"><div class="art-label"><span>You want to give up the taste of the cherries?</span><p>Cyanotype installation · 2026</p></div></div></div></div>
+      <div class="artwork" onclick="openLightbox('pietas', 0)" style="cursor:pointer;"><div class="artwork-inner"><img src="image 15.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;object-position:center 20%;" alt="London Pietas"/><div class="art-overlay"><div class="art-label"><span>London Pietas</span><p>Cyanotype paper puppet installation · 2026</p></div></div></div></div>
+      <div class="artwork" onclick="openLightbox('carousel', 0)" style="cursor:pointer;"><div class="artwork-inner"><img src="image23.JPG" class="art-bg" style="object-fit:cover;width:100%;height:100%;object-position:center 20%;" alt="Kodak Carousel"/><div class="art-overlay"><div class="art-label"><span>Kodak Carousel</span><p>Cyanotype puppets · wooden carousel · 2025</p></div></div></div></div>
+      <div class="artwork" onclick="openLightbox('harlequin', 0)" style="cursor:pointer;"><div class="artwork-inner"><img src="image31.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;object-position:center top;" alt="Sad Harlequin"/><div class="art-overlay"><div class="art-label"><span>Sad Harlequin</span><p>Cyanotype puppets · digital images · 2025</p></div></div></div></div>
+      <div class="artwork" onclick="openLightbox('braid', 0)" style="cursor:pointer;"><div class="artwork-inner"><img src="image35.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;object-position:center top;" alt="The Stolen Braid"/><div class="art-overlay"><div class="art-label"><span>The Stolen Braid</span><p>Mixed media installation · 2025</p></div></div></div></div>
+      <div class="artwork" onclick="openLightbox('weaves', 0)" style="cursor:pointer;"><div class="artwork-inner"><img src="image37.jpg" class="art-bg" style="object-fit:cover;width:100%;height:100%;object-position:center top;" alt="The One Who Weaves and Waits"/><div class="art-overlay"><div class="art-label"><span>The One Who Weaves and Waits</span><p>Mixed media installation · digital · cyanotype · thread · 2024</p></div></div></div></div>
+    </div>
+</div>
+</section>
+
+<section id="statement">
+  <div class="statement-layout">
+    <div class="statement-aside reveal">
+      <p class="section-label">Artist statement</p>
+      <h2 class="section-title">Notes on<br>my <em>practice</em></h2>
+      <p>Written by the artist, 2026.</p>
+      <div class="statement-rule"></div>
+    </div>
+    <div class="statement-body reveal" style="transition-delay:0.2s">
+      <p>Leila Prosperi is an emerging artist who blends photography with theatre and performance to create experimental artworks that engage audiences through tangible experiences. Employing cyanotype photography, interactive installations and paper sculptures, her practice crosses personal and collective histories, bringing together past and present to explore contemporary feminist themes through intimate narratives, historical research, and layered symbolism.</p>
+      <p>She considers the impact that cultural practices, including art, have on the formation of female identities, and how art does not exist in a vacuum but operates within a complex world of interactive relationships that articulate the social and political conditions of the world. She finds photography's fallacious assumption of realism, as a medium that exploits technological advancements, to be the perfect premise for humorous and, at times, surreal reflections on fictionality and masquerade in relation to broader issues such as womanhood, mental health and institutional power.</p>
+      <p>Leila's practice begins with photography, favouring cyanotype for its capacity to transfer images onto unconventional surfaces and transform them into something new. Extending beyond the photographic print, she works with collage and sculpture to construct paper puppets from personal photo albums and stock photographs that are printed as cyanotype, and cut to be assembled together.</p>
+      <p>The puppets are used to construct theatrical installations that invite a dialogue between viewer and artwork, an encounter that is not only optical but also spatial and tactile. Her practice demonstrates that photographs do not belong exclusively on the wall but can float in space, echoing their vernacular quality as family keepsakes meant to be held and to activate affective responses.</p>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-layout">
+    <div class="about-top">
+      <div class="about-portrait reveal">
+        <div class="portrait-deco"></div>
+        <div class="portrait-frame">
+          <img src="portrait.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%;" alt="Leila Prosperi"/>
+        </div>
+      </div>
+      <div class="about-text reveal" style="transition-delay:0.22s">
+        <p class="section-label">The artist</p>
+        <h2 class="section-title">London, <em>via Italy</em></h2>
+        <p class="about-bio">Leila Prosperi is an Italian artist and photographer based in London. She graduated in Fine Art: Photography from Camberwell College of Arts, UAL in 2026, having moved from Italy to the UK to expand her practice.</p>
+        <p class="about-bio">She works across photography and art: street photography, ephemeral image-making with both old and new techniques, film and digital, darkroom printing and traditional processes such as cyanotype. From the photographic print, she builds theatrical installations constructed from articulated paper puppets — figures that carry the image within their form.</p>
+        <p class="about-bio">Her work engages with feminist themes, fictionality, and the social power of images — asking what photographs do to us, how they shape identity, and what happens when we make them move.</p>
+        <div class="about-detail"><span>Based</span><span>London, UK</span></div>
+        <div class="about-detail"><span>Education</span><span>BA Fine Art: Photography, Camberwell College of Arts, UAL — 2026</span></div>
+        <div class="about-detail"><span>Commissions</span><span>Open — enquire below</span></div>
+        <a href="#contact" class="btn-solid">Get in touch</a>
+      </div>
+    </div></div>
+</section>
+
+<section id="contact">
+  <div class="contact-layout reveal">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Begin a<br><em>conversation</em></h2>
+    <p class="contact-intro">For commissions, exhibitions, installations, editorial, or to acquire a work — I'd love to hear from you.</p>
+    <div class="contact-form" id="contactForm">
+      <div class="form-row">
+        <div class="field"><label>Name</label><input type="text" placeholder="Your name"/></div>
+        <div class="field"><label>Email</label><input type="email" placeholder="your@email.com"/></div>
+      </div>
+      <div class="field">
+        <label>Subject</label>
+        <select>
+          <option value="">Select a reason...</option>
+          <option>Commission — cyanotype print</option>
+          <option>Commission — puppet sculpture</option>
+          <option>Theatrical installation</option>
+          <option>Acquire an original work</option>
+          <option>Exhibition / residency</option>
+          <option>Press / editorial</option>
+          <option>Photography commission</option>
+          <option>General inquiry</option>
+        </select>
+      </div>
+      <div class="field"><label>Message</label><textarea placeholder="Tell me about your project or inquiry..."></textarea></div>
+      <div class="form-submit"><button class="btn-solid" onclick="submitForm()">Send Message</button></div>
+    </div>
+    <div class="confirm-msg" id="confirmMsg">Thank you — Leila will be in touch soon.</div>
+    <div class="contact-socials">
+      <!-- Replace # with your actual URLs -->
+     <a href="https://instagram.com/stegosauraleila" class="social-link">Instagram</a>
+<a href="mailto:leileileilap@gmail.com" class="social-link">Email</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><em>Leila Prosperi</em> &nbsp;·&nbsp; Artist &amp; Photographer &nbsp;·&nbsp; London &nbsp;·&nbsp; &copy; 2026</p>
+</footer>
+
+<script>
+function goToTab(id){
+  switchTab(id);
+  document.getElementById('gallery').scrollIntoView({behavior:'smooth'});
+}
+function switchTab(id){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  const btn=document.querySelector('.tab-btn[onclick="switchTab(\''+id+'\')"]');
+  if(btn)btn.classList.add('active');
+  const panel=document.getElementById('tab-'+id);
+  if(panel)panel.classList.add('active');
+}
+function submitForm(){
+  document.getElementById('contactForm').style.display='none';
+  document.getElementById('confirmMsg').style.display='block';
+}
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">&#215;</button>
+  <button class="lightbox-prev" onclick="changeLightbox(-1)">&#8592;</button>
+  <div class="lightbox-img-wrap">
+    <img id="lightbox-img" src="" alt=""/>
+    <div id="lightbox-video-wrap" style="display:none;"></div>
+  </div>
+  <div class="lightbox-caption">
+    <span id="lightbox-title"></span>
+    <p id="lightbox-year"></p>
+  </div>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+  <button class="lightbox-next" onclick="changeLightbox(1)">&#8594;</button>
+</div>
+
+<script>
+const galleries = {
+  "cherries": [{type:"image",src:"image1.jpg",title:"You want to give up the taste of the cherries?",year:"Cyanotype puppets installation · 2026"}
+,{type:"image",src:"image2.jpg",title:"You want to give up the taste of the cherries?",year:"Cyanotype puppets installation · 2026"}
+,{type:"image",src:"image3.jpg",title:"You want to give up the taste of the cherries?",year:"Cyanotype puppets installation · 2026"}
+,{type:"image",src:"image4.jpg",title:"You want to give up the taste of the cherries?",year:"Cyanotype puppets installation · 2026"}
+,{type:"image",src:"image5.jpg",title:"You want to give up the taste of the cherries?",year:"Cyanotype puppets installation · 2026"}
+,{type:"image",src:"image6.jpg",title:"You want to give up the taste of the cherries?",year:"Cyanotype puppets installation · 2026"}
+,{type:"image",src:"image7.jpg",title:"You want to give up the taste of the cherries?",year:"Cyanotype puppets installation · 2026"}
+,{type:"image",src:"image9.jpg",title:"You want to give up the taste of the cherries?",year:"Cyanotype puppets installation · 2026"}
+,{type:"image",src:"image10.jpg",title:"You want to give up the taste of the cherries?",year:"Cyanotype puppets installation · 2026"}
+,{type:"image",src:"image11.jpg",title:"You want to give up the taste of the cherries?",year:"Cyanotype puppets installation · 2026"}
+,{type:"image",src:"image12.JPG",title:"You want to give up the taste of the cherries?",year:"Cyanotype puppets installation · 2026"}
+,{type:"image",src:"image13.JPG",title:"You want to give up the taste of the cherries?",year:"Cyanotype puppets installation · 2026"}
+,{type:"image",src:"image14.JPG",title:"You want to give up the taste of the cherries?",year:"Cyanotype puppets installation · 2026"}
+],
+  "pietas": [{type:"image",src:"image 15.jpg",title:"London Pietas",year:"Cyanotype paper puppet installation · 2026"}
+,{type:"image",src:"image16.JPG",title:"London Pietas",year:"Cyanotype paper puppet installation · 2026"}
+,{type:"image",src:"image 17.jpg",title:"London Pietas",year:"Cyanotype paper puppet installation · 2026"}
+,{type:"image",src:"image19.JPG",title:"London Pietas",year:"Cyanotype paper puppet installation · 2026"}
+,{type:"image",src:"image20.JPG",title:"London Pietas",year:"Cyanotype paper puppet installation · 2026"}
+,{type:"image",src:"image21.JPG",title:"London Pietas",year:"Cyanotype paper puppet installation · 2026"}
+,{type:"image",src:"image 22.JPG",title:"London Pietas",year:"Cyanotype paper puppet installation · 2026"}
+],
+  "carousel": [{type:"image",src:"image23.JPG",title:"Kodak Carousel",year:"Cyanotype puppets · wooden carousel · 2025"}
+,{type:"image",src:"image24.JPG",title:"Kodak Carousel",year:"Cyanotype puppets · wooden carousel · 2025"}
+,{type:"image",src:"image 25.JPG",title:"Kodak Carousel",year:"Cyanotype puppets · wooden carousel · 2025"}
+,{type:"image",src:"image26.JPG",title:"Kodak Carousel",year:"Cyanotype puppets · wooden carousel · 2025"}
+,{type:"image",src:"image27.JPG",title:"Kodak Carousel",year:"Cyanotype puppets · wooden carousel · 2025"}
+,{type:"image",src:"image 28.jpg",title:"Kodak Carousel",year:"Cyanotype puppets · wooden carousel · 2025"}
+,{type:"image",src:"image29.jpg",title:"Kodak Carousel",year:"Cyanotype puppets · wooden carousel · 2025"}
+,{type:"video",src:"timmed.mp4",title:"Kodak Carousel",year:"Cyanotype puppets · wooden carousel · 2025"}
+],
+  "harlequin": [{type:"image",src:"image31.jpg",title:"Sad Harlequin",year:"Cyanotype puppets · digital images · 2025"}
+,{type:"image",src:"image32.jpg",title:"Sad Harlequin",year:"Cyanotype puppets · digital images · 2025"}
+,{type:"image",src:"image33.jpg",title:"Sad Harlequin",year:"Cyanotype puppets · digital images · 2025"}
+,{type:"image",src:"image34.jpg",title:"Sad Harlequin",year:"Cyanotype puppets · digital images · 2025"}
+],
+  "braid": [{type:"image",src:"image35.jpg",title:"The Stolen Braid",year:"Mixed media installation · 2025"}
+,{type:"image",src:"image36.jpg",title:"The Stolen Braid",year:"Mixed media installation · 2025"}
+,{type:"video",src:"IMG_3314.MOV",title:"The Stolen Braid",year:"Mixed media installation · 2025"}
+],
+  "weaves": [{type:"image",src:"image37.jpg",title:"The One Who Weaves and Waits",year:"Mixed media installation · digital · cyanotype · thread · 2024"}
+,{type:"image",src:"image38.jpg",title:"The One Who Weaves and Waits",year:"Mixed media installation · digital · cyanotype · thread · 2024"}
+,{type:"image",src:"image39.jpg",title:"The One Who Weaves and Waits",year:"Mixed media installation · digital · cyanotype · thread · 2024"}
+,{type:"image",src:"image 40.jpg",title:"The One Who Weaves and Waits",year:"Mixed media installation · digital · cyanotype · thread · 2024"}
+],
+};
+
+let currentGallery = 'cherries';
+let currentIndex = 0;
+
+
+function openSingle(src){
+  currentGallery = '__single__';
+  galleries['__single__'] = [{type:'image',src:src,title:'',year:''}];
+  currentIndex = 0;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+  // hide arrows and counter for single
+  document.querySelector('.lightbox-prev').style.display='none';
+  document.querySelector('.lightbox-next').style.display='none';
+  document.getElementById('lightbox-counter').style.display='none';
+  document.getElementById('lightbox-title').style.display='none';
+  document.getElementById('lightbox-year').style.display='none';
+}
+
+function openLightbox(galleryId, index){
+  document.querySelector('.lightbox-prev').style.display='';
+  document.querySelector('.lightbox-next').style.display='';
+  document.getElementById('lightbox-counter').style.display='';
+  document.getElementById('lightbox-title').style.display='';
+  document.getElementById('lightbox-year').style.display='';
+  currentGallery = galleryId;
+  currentIndex = index;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+  // pause any video
+  const vid = document.getElementById('lightbox-video');
+  if(vid) vid.pause();
+}
+
+function changeLightbox(dir){
+  const items = galleries[currentGallery];
+  currentIndex = (currentIndex + dir + items.length) % items.length;
+  updateLightbox();
+}
+
+function updateLightbox(){
+  const items = galleries[currentGallery];
+  const item = items[currentIndex];
+  const imgEl = document.getElementById('lightbox-img');
+  const vidWrap = document.getElementById('lightbox-video-wrap');
+  
+  if(item.type === 'video'){
+    imgEl.style.display='none';
+    vidWrap.style.display='block';
+    vidWrap.innerHTML = `<video id="lightbox-video" controls style="max-width:90vw;max-height:80vh;outline:none;border:0.5px solid rgba(168,204,224,0.15);"><source src="${item.src}"><p style="color:var(--cyan-pale);font-size:0.8rem;">Your browser does not support this video.</p></video>`;
+  } else {
+    imgEl.style.display='block';
+    imgEl.src = item.src;
+    vidWrap.style.display='none';
+    vidWrap.innerHTML='';
+  }
+  document.getElementById('lightbox-title').textContent = item.title;
+  document.getElementById('lightbox-year').textContent = item.year;
+  document.getElementById('lightbox-counter').textContent = (currentIndex+1) + ' / ' + items.length;
+}
+
+document.getElementById('lightbox').addEventListener('click', function(e){
+  if(e.target === this) closeLightbox();
+});
+
+document.addEventListener('keydown', function(e){
+  if(document.getElementById('lightbox').classList.contains('open')){
+    if(e.key==='ArrowRight') changeLightbox(1);
+    if(e.key==='ArrowLeft') changeLightbox(-1);
+    if(e.key==='Escape') closeLightbox();
+  }
+});
+</script>
+</body>
+</html>
